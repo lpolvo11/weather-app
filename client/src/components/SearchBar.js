@@ -13,6 +13,10 @@ const SearchBar = () => {
   const [isError, setIsError] = useState(false);
 
   const fetchWeather = async () => {
+    if (!city) {
+      setIsError("city parameter is required");
+      return;
+    }
     setIsLoading(true);
     setWeatherData(null);
     setIsError(false);
@@ -74,7 +78,19 @@ const SearchBar = () => {
           <CircularProgress />
         </Box>
       )}
-      {isError && <p style={{ color: "red" }}>Error... {isError}</p>}
+      {isError && (
+        <p
+          style={{
+            color: "red",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            fontSize: "25px",
+          }}
+        >
+          Error... {isError}
+        </p>
+      )}
       <div
         style={{
           display: "flex",
