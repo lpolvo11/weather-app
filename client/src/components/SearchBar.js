@@ -26,6 +26,8 @@ const SearchBar = () => {
       const data = await response.json();
       if (response.ok) {
         setWeatherData(data);
+      } else {
+        setIsError(data.error);
       }
     } catch (error) {
       setIsError(error.message);
